@@ -21,6 +21,10 @@ export default function Home() {
         Math.ceil((session.accessTokenExpires - Date.now()) / 1000),
       );
       setSecondsUntilExpire(secondsLeft);
+
+      if (secondsLeft === 0) {
+        signOut({ redirect: true, callbackUrl: "/login" });
+      }
     };
 
     updateCountdown();
